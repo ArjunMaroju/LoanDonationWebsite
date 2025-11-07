@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help & Support Platform</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    h2 { margin-top: 0; }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover { background: #219150; }
+
+    .loan-list, .donation-list {
+      margin-top: 20px;
+    }
+
+    .entry {
+      background: #ecf0f1;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Help & Support Community Platform</h1>
+    <p>Donate or Provide Loans to People in Need</p>
+  </header>
+
+  <div class="container">
+
+    <!-- Donation Form -->
+    <div class="card">
+      <h2>Give a Donation</h2>
+      <label>Your Name</label>
+      <input type="text" id="donorName" placeholder="Enter your name" />
+
+      <label>Amount (₹)</label>
+      <input type="number" id="donationAmount" />
+
+      <label>Message</label>
+      <textarea id="donationMessage" placeholder="Write a message"></textarea>
+
+      <button onclick="submitDonation()">Submit Donation</button>
+
+      <div class="donation-list" id="donationList"></div>
+    </div>
+
+    <!-- Loan Request Form -->
+    <div class="card">
+      <h2>Request a Loan</h2>
+      <label>Your Name</label>
+      <input type="text" id="loanName" placeholder="Enter your name" />
+
+      <label>Amount Needed (₹)</label>
+      <input type="number" id="loanAmount" />
+
+      <label>Reason</label>
+      <textarea id="loanReason" placeholder="Why do you need the loan?"></textarea>
+
+      <button onclick="submitLoan()">Submit Loan Request</button>
+
+      <div class="loan-list" id="loanList"></div>
+    </div>
+
+  </div>
+
+  <script>
+    function submitDonation() {
+      const name = document.getElementById("donorName").value;
+      const amount = document.getElementById("donationAmount").value;
+      const msg = document.getElementById("donationMessage").value;
+
+      if (!name || !amount) return alert("Please fill all fields");
+
+      const entry = document.createElement("div");
+      entry.className = "entry";
+      entry.innerHTML = `<strong>${name}</strong> donated ₹${amount}<br>${msg}`;
+      document.getElementById("donationList").appendChild(entry);
+    }
+
+    function submitLoan() {
+      const name = document.getElementById("loanName").value;
+      const amount = document.getElementById("loanAmount").value;
+      const reason = document.getElementById("loanReason").value;
+
+      if (!name || !amount || !reason) return alert("Please fill all fields");
+
+      const entry = document.createElement("div");
+      entry.className = "entry";
+      entry.innerHTML = `<strong>${name}</strong> needs a loan of ₹${amount}<br>Reason: ${reason}`;
+      document.getElementById("loanList").appendChild(entry);
+    }
+  </script>
+</body>
+</html>
